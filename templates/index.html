@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Biblioteca</title>
+</head>
+<body>
+    <h1>Biblioteca - Registro de Autores y Libros</h1>
+
+    <h2>Agregar Autor</h2>
+    <form action="/agregar_autor" method="POST">
+        <input type="text" name="nombre" placeholder="Nombre del autor" required>
+        <input type="text" name="nacionalidad" placeholder="Nacionalidad">
+        <button type="submit">Agregar Autor</button>
+    </form>
+
+    <h2>Agregar Libro</h2>
+    <form action="/agregar_libro" method="POST">
+        <input type="text" name="titulo" placeholder="Título del libro" required>
+        <input type="text" name="genero" placeholder="Género">
+        <select name="autor_id">
+            {% for a in autores %}
+            <option value="{{ a.id }}">{{ a.nombre }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Agregar Libro</button>
+    </form>
+
+    <hr>
+
+    <h2>Libros registrados</h2>
+    <table border="1" cellpadding="8">
+        <tr><th>ID</th><th>Título</th><th>Género</th><th>Autor</th></tr>
+        {% for l in libros %}
+        <tr>
+            <td>{{ l.id }}</td>
+            <td>{{ l.titulo }}</td>
+            <td>{{ l.genero }}</td>
+            <td>{{ l.autor }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
